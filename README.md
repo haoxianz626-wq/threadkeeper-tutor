@@ -1,81 +1,87 @@
 # ThreadKeeper Tutor｜不断线 AI 私人导师
 
-> 一个开源、轻量、可中断、可恢复的 AI 学习 Skill。解决：AI 回答太多、学一半想问别的问题、上一条消息被挤走、跨会话学习断片。
+[简体中文](README.md) | [English](README.en.md)
 
-## 30 秒了解
+> 开源中英双语 AI 私人学习导师 Skill：少量教学、保持学习主线、临时插问、断片恢复与可迁移存档。
 
-- **一口一口学**：每次只教一个知识点，而不是一整份教程。
-- **双层进度**：区分“讲过、读完、真正掌握”。未经确认不推进。
-- **临时插问**：旁支问题不会覆盖学习主线。
-- **断片恢复**：重现当前练习，不要求上滑找旧消息。
-- **可迁移存档**：用纯文本快照或 JSON 状态文件跨 Agent 接力。
-- **Focus Guard 专注守卫（v1.1）**：AI 等待期间减轻分心触发；离开后用一句话 + 一个微动作回到原断点。
+**v1.2.0：支持中文 / English，允许在同一学习进度中切换语言。** 默认只用学习者选择的语言回复；输入 `双语模式` 才会同时输出简短中英文内容。
 
-## 项目结构
+## 解决什么问题？
+
+- **AI 输出太多：** 一次只学一个最小概念，一次最多一个任务。
+- **看一半就提问：** `插问` 简答后返回主线，`暂存` 记录疑问。
+- **还没看完就被推进：** 区分讲解、阅读、理解检测、已掌握。
+- **刷短视频后断片：** `我回来了` 恢复原断点，给一个 30 秒内能开始的动作。
+- **跨 Agent 容易遗忘：** `保存进度` 导出可复制快照；有授权文件访问时可保存私人 JSON。
+- **跨语言使用：** `English mode` / `中文模式` / `双语模式` 切换，不重置学习进度。
+
+## 安装
+
+遵循 [Agent Skills 规范](https://agentskills.io/specification)，将**整个仓库文件夹**复制至兼容 Agent 的 Skills 目录，确保根目录存在 `SKILL.md`：
+
+| 环境 | 常见安装位置 |
+| --- | --- |
+| OpenAI Codex | `.agents/skills/threadkeeper-tutor/` 或 `~/.agents/skills/threadkeeper-tutor/` |
+| Claude Code | `.claude/skills/threadkeeper-tutor/` 或 `~/.claude/skills/threadkeeper-tutor/` |
+| GitHub Copilot Agent | `.github/skills/threadkeeper-tutor/`（支持 Skills 时） |
+| 普通聊天 AI | 复制 [PROMPT.md](PROMPT.md) 或 [PROMPT.en.md](PROMPT.en.md) |
+
+平台能力与路径可能随版本变化，使用时以对应 Agent 的文档为准；本仓库未声称所有 Agent 均经过端到端验证。
+
+## 五条常用指令
+
+| 中文 | English | 效果 |
+| --- | --- | --- |
+| `开始学习 Vue3 watch` | `Start learning Vue3 watch` | 开始或恢复学习 |
+| `我看完了` | `I've read it` | 只进行一题检测，不自动跳下一节 |
+| `插问：computed 是什么？` | `Side question: What is computed?` | 简答并保留原学习步骤 |
+| `我回来了` | `I'm back` | 无责恢复断点 |
+| `保存进度` | `Save progress` | 导出可迁移快照 |
+
+其他命令：`暂存 / Park`、`回到主线 / Back to main topic`、`我断片了 / I lost my place`、`下一步 / Next step`、`暂停学习 / Pause learning`、`恢复进度 / Restore progress`。
+
+## 语言行为
+
+- **自动模式：** 优先用户明确设置，否则使用最近一条实质性消息的语言，或延续现有学习语言。
+- **手动切换：** 输入 `中文模式` / `English mode`，仅改变回复语言。
+- **双语输出：** 输入 `双语模式` / `Bilingual mode`；此模式下仍保持简短，避免再次造成信息过载。
+- **跨语言快照：** 同一状态 JSON 保存 `language` 和 `language_mode`；不因切换语言而修改已验证的掌握进度。
+
+## 仓库结构
 
 ```text
 threadkeeper-tutor/
-├── SKILL.md                           # 核心标准 Skill（必须）
-├── README.md                          # 使用与分享
-├── PROMPT.md                          # 不支持 Skills 的聊天机器人版本
-├── CHANGELOG.md                       # 版本记录
-├── CONTRIBUTING.md                    # 贡献指南
-├── PUBLISHING.md                      # GitHub 发布指南
+├── SKILL.md                         # 双语指令与核心规则
+├── README.md / README.en.md         # 中文 / English 介绍
+├── PROMPT.md / PROMPT.en.md         # 中文 / English 独立提示词
+├── CHANGELOG.md                     # 双语更新日志
+├── CONTRIBUTING.md / CONTRIBUTING.en.md
+├── PUBLISHING.md / PUBLISHING.en.md
 ├── assets/
-│   └── learning-state.template.json   # 可选状态模板
+│   ├── learning-state.template.json
+│   └── learning-state.en.template.json
 ├── examples/
-│   └── conversation.md                # 学习中断/恢复示例
+│   ├── conversation.md
+│   └── conversation.en.md
 ├── tests/
-│   └── scenarios.md                   # 手动验收场景
-└── LICENSE                            # MIT 开源协议
+│   ├── scenarios.md
+│   └── scenarios.en.md
+└── LICENSE
 ```
 
-## 安装 / 使用
+## 跨会话保存与隐私
 
-此 Skill 基于开放的 [Agent Skills 规范](https://agentskills.io/specification)。支持 Skill 的 Agent 可读取根目录 `SKILL.md`。不同平台发现 Skill 的目录不同，常见方式：
+**Skill 是教学行为规范，不是数据库。** 没有存储权限的 Agent 只能给出文本快照，不能自动跨会话同步。请自行保留快照，下次输入 `恢复进度`；有授权的写文件能力时才可保存私有 `learning-state.json`。请勿将真实学习记录、私人信息或 API 密钥提交至公共仓库。
 
-- **OpenAI Codex**：复制整个 `threadkeeper-tutor` 文件夹到项目的 `.agents/skills/`，或个人目录 `~/.agents/skills/`；在对话中提及 `$threadkeeper-tutor` 或让 Agent 自动匹配。
-- **Claude Code**：复制到项目 `.claude/skills/` 或个人目录 `~/.claude/skills/`；按产品支持的方式调用。
-- **VS Code / GitHub Copilot**：复制到项目 `.github/skills/`，然后在支持 Skills 的 Agent 会话中使用。
-- **其他 Agent / 网页聊天**：若支持 Skills，按平台的导入方式加载 `SKILL.md`；否则复制 `PROMPT.md` 作为提示词。
+这不是手机监测工具：AI 无法检测用户读到哪一行，也不能判断是否正在刷 TikTok。
 
-这些是通用安装路径示例，不表示所有 Agent 都已验证兼容；具体调用方式取决于产品和版本。
+## 示例、测试与贡献
 
-## 先用四条指令
+- [中文对话示例](examples/conversation.md) · [English examples](examples/conversation.en.md)
+- [中文测试场景](tests/scenarios.md) · [English test scenarios](tests/scenarios.en.md)
+- [贡献说明](CONTRIBUTING.md) · [Contributing (EN)](CONTRIBUTING.en.md)
+- [发布说明](PUBLISHING.md) · [Publishing (EN)](PUBLISHING.en.md)
 
-| 输入 | 效果 |
-| --- | --- |
-| `开始学习 Vue3 watch` | 开启/恢复一条主线，一次只讲一小段 |
-| `插问：computed 与 watch 区别` | 简短回答，主线不变 |
-| `我看完了` | 出一道检查理解的问题，不直接推进 |
-| `保存进度` | 生成能带到其他 Agent 的学习快照 |
-| `我回来了` | 复现断点，给一个 30 秒内能开始的最小动作 |
+**设计原则：不是让 AI 记住所有对话，而是让学习者永远知道自己停在哪里。**
 
-补充：`暂存：...`、`我断片了`、`回到主线`、`下一步`、`重讲`、`恢复进度`、`我分心了`、`暂停学习`。
-
-## 如何真正实现跨会话记忆
-
-本 Skill 是**行为规则，不是永久记忆服务**。纯聊天环境请在结束时输入 `保存进度`，将快照存到你能访问的笔记；下次粘贴快照并说 `恢复进度`。如果 Agent 有授权的文件访问能力，可以让它把 JSON 状态保存在个人或项目目录，随后另一个 Agent 读取同一个文件。
-
-不要声称只安装 SKILL.md 就能自动云端同步、监测你实际读到哪行，或定时主动追踪学习：这些功能需要宿主应用的存储、界面或自动化支持。
-
-## Focus Guard：分心后怎么回到学习主线？
-
-如果 AI 正在生成答案时，你不自觉拿起手机刷短视频，下次只需对导师说：**`我回来了`**。
-
-导师应该用很短的回复恢复此前主线、重现当前任务，并给一个 30 秒内能**开始**的小动作。它不会默认你已经看完上一条答案，更不能监测你的手机或 TikTok 使用情况。
-
-## 自己部署与公开分享
-
-1. 将整个目录上传至 GitHub 仓库（或放到现有仓库的 skills 子目录）。
-2. README 首页说明应用场景、安装方式和示例，保留 MIT LICENSE。
-3. 发布前按照 `tests/scenarios.md` 在目标 Agent 中实际测试，特别检查“未读完时问新问题”和“无历史恢复”的行为。
-4. 公开发布时不要上传真实的个人学习快照、账号信息或敏感资料。仅分享 `assets/learning-state.template.json` 和虚构示例。
-
-发布到 GitHub 的具体步骤见 [PUBLISHING.md](PUBLISHING.md)。
-
-## 设计原则
-
-**不是让 AI 记住所有消息，而是让用户永远知道自己停在哪里。**
-
-参考：[Agent Skills 规范](https://agentskills.io/specification) · [OpenAI Skills 文档](https://learn.chatgpt.com/docs/build-skills)
+License: [MIT](LICENSE).

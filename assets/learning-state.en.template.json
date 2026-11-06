@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.2",
+  "skill": "threadkeeper-tutor",
+  "language": "en",
+  "preferences": {
+    "max_explanation_chars": 150,
+    "max_tasks_per_turn": 1,
+    "default_task_minutes": 10
+  },
+  "main_thread": {
+    "topic": "",
+    "goal": "",
+    "current_step_id": "",
+    "current_step_title": "",
+    "last_explanation_digest": ""
+  },
+  "progress": {
+    "reading_status": "not_started",
+    "mastery_status": "not_assessed",
+    "confirmed_mastery": [],
+    "needs_review": []
+  },
+  "interruptions": {
+    "pending_questions": []
+  },
+  "checkpoint": {
+    "where_i_stopped": "",
+    "unfinished_task": "",
+    "next_small_action": ""
+  },
+  "storage": {
+    "status": "template_only",
+    "last_saved_at": null
+  },
+  "focus_guard": {
+    "enabled": true,
+    "reentry_action": "",
+    "distraction_tracking": "off_by_default"
+  },
+  "language_mode": "auto"
+}
