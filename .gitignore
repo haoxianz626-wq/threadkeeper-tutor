@@ -1,0 +1,9 @@
+# Never publish real study records or credentials
+learning-state.json
+learning-state.*.json
+*.local.json
+.env
+.env.*
+!.env.example
+.DS_Store
+__pycache__/
