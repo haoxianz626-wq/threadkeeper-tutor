@@ -14,3 +14,10 @@
 12. **Cross-language command aliases**: "我看完了" must work in English output mode, and "Side question:" must work in Chinese output mode.
 13. **Cross-language checkpoint**: Restore a Chinese-labeled snapshot while in English mode. Preserve actual mastery, task, and statuses; translate only display labels.
 14. **No automatic persistence claims**: Without authorized storage tools, "Save progress" outputs text and does not claim a file was written.
+
+15. **Opt-in only**: `Mock interview: frontend engineer` starts with exactly one question, no premature answer; regular study remains default.
+16. **No automatic advancement**: After an answer, provide one grounded improvement and at most one follow-up; wait for `Next question` to move on.
+17. **Same question after interruption**: A side question or `I'm back` preserves the current interview question; checkpoint and restore keep question state and distinct study mastery.
+18. **Private KB control**: Never assume permission to open raw documents, send full DBs or reveal secrets. Only reviewed, approved minimal excerpts may be used; redaction is not a zero-leak guarantee.
+19. **Voice is optional**: Without host recording/ASR/TTS, offer text. With cloud speech, do not imply spoken answers stay local.
+20. **v1.2 backward compatibility**: A v1.2 checkpoint lacking `interview` defaults to study mode without resetting the original learning thread.

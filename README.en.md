@@ -4,7 +4,7 @@
 
 > A free, open-source, bilingual Agent Skill for learning in tiny steps, asking tangential questions without losing your place, and recovering after distraction or chat context loss.
 
-**v1.2.0 adds English and Chinese support.** The tutor replies in your preferred language by default. Switch at any time without resetting progress; opt in to side-by-side bilingual explanations.
+**v1.3.0 adds opt-in interview practice**, retaining English / Chinese support. Switch languages without resetting your learning thread; opt in to paired bilingual explanations.
 
 ## Why use it?
 
@@ -14,6 +14,11 @@
 - **You open short-form videos and forget your learning thread.** Say `I'm back` to see the original task and one tiny next action, without judgment.
 - **You change agents or start a new chat.** Export a portable checkpoint and restore it on the next agent.
 
+## v1.3.0: Mock Interview Mode (opt-in)
+
+Enter `Mock interview: Vue3 frontend engineer`. The tutor asks one question at a time, waits for your answer, then gives brief evidence-based feedback and at most one targeted follow-up. Say `Next question` to advance. `I lost my place` or `I'm back` reconstructs **the same question**; `End interview` produces a portable checkpoint.
+
+Voice interviews require a host app with microphone input, speech recognition and optional speech synthesis. The Skill itself does not record audio. When using cloud models or cloud speech, selected excerpts and your prompts/answers may leave your device. Raw private files must remain outside the cloud agent's scope; redaction and Skill instructions alone do not guarantee confidentiality.
 ## Install
 
 This repository follows the [Agent Skills specification](https://agentskills.io/specification). Copy the **entire folder** into a Skills location supported by your agent, keeping the root `SKILL.md` file:
@@ -46,6 +51,7 @@ Save progress.
 | `I'm back` / `I lost my place` | `我回来了` / `我断片了` | Recover the original step |
 | `Save progress` / `Restore progress` | `保存进度` / `恢复进度` | Move a checkpoint between agents |
 | `English mode` / `Bilingual mode` | `中文模式` / `双语模式` | Change output language, not progress |
+| `Mock interview: Vue3` | `模拟面试：Vue3` | One question at a time, with recovery |
 
 Also supported: `Next step`, `Pause learning`, `Explain again`, and `Switch topic: ...`.
 

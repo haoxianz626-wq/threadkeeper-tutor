@@ -1,5 +1,15 @@
 # Changelog / 更新日志
 
+## v1.3.0 — 2026-11-08
+
+- **中文：** 新增可选 Interview Mode（模拟面试模式）：一轮一道题、基于回答的反馈与追问、用户确认后进入下一题。
+- **中文：** 模拟面试支持插问分流、分心后恢复当前题目、面试进度快照；不改变原来的学习掌握状态。
+- **中文：** 加入私有知识库的「已审核脱敏片段、最小必要传输」边界说明，以及云端模型/语音服务的能力与隐私限制。
+- **中文：** 更新中英文说明、提示词、状态模板与回归测试；修复中文版对话示例中无效的 `undefined` 内容。
+- **EN:** Added opt-in one-question-at-a-time interview mode, answer-based feedback, controlled advancement, interview checkpoints and distraction-safe recovery.
+- **EN:** Documented approved-excerpt-only retrieval, cloud/voice privacy caveats and host-dependent speech integration; updated both language variants and tests.
+- **Compatibility:** Existing v1.2 checkpoints remain valid; absent interview fields default to study mode.
+
 ## v1.2.0 — 2026-11-07
 
 - **EN:** Added English README, standalone tutor prompt, examples, tests, contribution and publishing docs.

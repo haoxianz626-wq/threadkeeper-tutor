@@ -76,3 +76,44 @@ Next action: open the Vue component and find the input binding
 ```
 
 A printed checkpoint is portable text, not proof of durable storage.
+
+## 5. Mock interview mode (v1.3)
+
+**Learner:** Mock interview: Vue3 frontend engineer.
+
+**Tutor:** Question 1: When should you use `computed` rather than `watch`? Answer in your own words.
+Checkpoint: interview question 1 | awaiting answer
+
+**Learner:** Side question: Is `watch` always asynchronous?
+
+**Tutor:** Watchers are scheduled depending on configuration; they are not universally asynchronous. Your interview question remains the same.
+Checkpoint: interview question 1 | awaiting answer
+
+**Learner:** I got distracted. I'm back.
+
+**Tutor:** We're still on question 1 about `computed` versus `watch`. Start by stating one use case for each.
+Checkpoint: interview question 1 | awaiting answer
+
+**Learner:** `computed` derives a value; `watch` runs logic when a dependency changes.
+
+**Tutor:** Good distinction. For a stronger answer, mention that `computed` caches its result. Say `Next question` when ready.
+Checkpoint: interview question 1 | ready for next
+
+**Learner:** Save progress.
+
+**Tutor:**
+
+```text
+[ThreadKeeper checkpoint v1]
+Language: en
+Mode: interview
+Main thread: Vue3 frontend interview
+Current question: when to use computed rather than watch
+Question status: ready for next
+Answer summary: computed for derived values; watch for actions on change
+Feedback: mention computed caching
+Next action: wait for `Next question`
+[End checkpoint]
+```
+
+This fictional example does not imply native voice recording or automatic cloud access to private documents.

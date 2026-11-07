@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "skill": "threadkeeper-tutor",
   "language": "zh-CN",
   "preferences": {
@@ -37,5 +37,18 @@
     "reentry_action": "",
     "distraction_tracking": "off_by_default"
   },
-  "language_mode": "auto"
+  "language_mode": "auto",
+  "session_mode": "study",
+  "interview": {
+    "role": "",
+    "topic": "",
+    "current_question_id": "",
+    "current_question": "",
+    "question_status": "not_started",
+    "last_answer_summary": "",
+    "last_feedback": "",
+    "completed_questions": 0,
+    "source_policy": "approved_excerpts_only",
+    "input_channel": "text"
+  }
 }

@@ -24,7 +24,7 @@ Git access and repository permissions are required. Contributors without push ac
 3. Check JSON templates: same field schema; correct `language` and `language_mode` values.
 4. Run [English tests](tests/scenarios.en.md) and [Chinese tests](tests/scenarios.md), including a mid-session language switch.
 5. Check that `LICENSE` is present, repository visibility is public if sharing, and no personal state is tracked.
-6. Optionally create a Git tag and GitHub Release for `v1.2.0`. A commit is not a tagged Release.
+6. Optionally create a Git tag and GitHub Release for `v1.3.0`. A commit is not a tagged Release.
 
 ## Platform compatibility
 
