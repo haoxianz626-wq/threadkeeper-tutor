@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.3",
+  "schema_version": "1.4",
   "skill": "threadkeeper-tutor",
   "language": "en",
   "preferences": {
@@ -49,6 +49,7 @@
     "last_feedback": "",
     "completed_questions": 0,
     "source_policy": "approved_excerpts_only",
-    "input_channel": "text"
+    "input_channel": "text",
+    "explanation_preference": "adaptive"
   }
 }

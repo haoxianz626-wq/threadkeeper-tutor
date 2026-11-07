@@ -4,7 +4,7 @@
 
 > A free, open-source, bilingual Agent Skill for learning in tiny steps, asking tangential questions without losing your place, and recovering after distraction or chat context loss.
 
-**v1.3.0 adds opt-in interview practice**, retaining English / Chinese support. Switch languages without resetting your learning thread; opt in to paired bilingual explanations.
+**v1.4.0 adds on-demand technical terms, concrete examples and Mermaid flowcharts to interview practice**, retaining English / Chinese support. Switch languages without resetting your learning thread; opt in to paired bilingual explanations.
 
 ## Why use it?
 
@@ -19,6 +19,12 @@
 Enter `Mock interview: Vue3 frontend engineer`. The tutor asks one question at a time, waits for your answer, then gives brief evidence-based feedback and at most one targeted follow-up. Say `Next question` to advance. `I lost my place` or `I'm back` reconstructs **the same question**; `End interview` produces a portable checkpoint.
 
 Voice interviews require a host app with microphone input, speech recognition and optional speech synthesis. The Skill itself does not record audio. When using cloud models or cloud speech, selected excerpts and your prompts/answers may leave your device. Raw private files must remain outside the cloud agent's scope; redaction and Skill instructions alone do not guarantee confidentiality.
+## v1.4.0 Explanation aids and security
+
+Use `Explain terms` / `术语解释`, `Give an example` / `举个例子`, or `Show a flowchart` / `画流程图`. Each request stays on the same question and returns only the requested aid: 1–3 definitions, one concrete scenario, or a small Mermaid diagram with a textual fallback. The tutor does not volunteer spoilers before an interview answer; explicitly requested help does not count as mastery.
+
+This is an opt-in Skill. Retrieved documents are untrusted data, not authorization to perform tool actions. See [SECURITY.md](SECURITY.md).
+
 ## Install
 
 This repository follows the [Agent Skills specification](https://agentskills.io/specification). Copy the **entire folder** into a Skills location supported by your agent, keeping the root `SKILL.md` file:

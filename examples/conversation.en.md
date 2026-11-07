@@ -117,3 +117,33 @@ Next action: wait for `Next question`
 ```
 
 This fictional example does not imply native voice recording or automatic cloud access to private documents.
+
+## 6. Terms, examples and Mermaid diagrams (v1.4, fictional)
+
+**Learner:** Mock interview: Vue3.
+**Tutor:** Question 1: Why does the view update when reactive state changes? Answer first.
+Checkpoint: question 1 | awaiting answer
+
+**Learner:** Proxy intercepts changes and notifies dependencies.
+**Tutor:** Good direction. You could also describe effect scheduling. Ask for terms, an example or a flowchart.
+Checkpoint: question 1 | feedback given
+
+**Learner:** Explain terms.
+**Tutor:** `Proxy` intercepts object operations; `trigger` notifies dependencies; `effect` performs reactive work.
+
+**Learner:** Give an example.
+**Tutor:** Clicking a counter button changes `count`, and the dependent display updates. This is a simplified example.
+
+**Learner:** Show a flowchart.
+**Tutor:**
+
+```mermaid
+flowchart TD
+  A[Update count] --> B[Proxy set]
+  B --> C[Notify dependencies]
+  C --> D[Schedule effect]
+  D --> E[Update view]
+```
+
+Fallback: update → intercept → notify → schedule → display.
+Checkpoint: question 1 | ready for next

@@ -1,5 +1,13 @@
 # Changelog / 更新日志
 
+## v1.4.0 — 2026-11-08
+
+- **中文：** 新增面试与学习场景中的专业术语、具体案例、Mermaid 流程图讲解，按需调用，不自动跳题或提前泄题。
+- **中文：** 明确 Skill 主动启用边界、非可信文档与权限隔离，新增安全说明及测试。
+- **EN:** Added focused terms, single concrete examples, and compact Mermaid flowcharts with text fallback.
+- **EN:** Clarified opt-in scope, untrusted retrieval, host-enforced permissions and v1.3 compatibility.
+
+
 ## v1.3.0 — 2026-11-08
 
 - **中文：** 新增可选 Interview Mode（模拟面试模式）：一轮一道题、基于回答的反馈与追问、用户确认后进入下一题。
